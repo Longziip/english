@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technical English - Moyenne Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1>Technical English L3 Benyoucef Benkhedda University</h1>
+          <p class="subtitle">
+            Enter your marks (TD + Exam).
+          </p>
+        </div>
+        <div class="header-actions">
+          <button id="btnReset" class="btn btn-ghost" type="button">Reset</button>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Modules</h2>
+          <!-- <p class="muted">
+            Leave fields empty if you don’t have the mark yet. Only filled modules count in the moyenne.
+          </p> -->
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" aria-label="Modules table">
+            <thead>
+              <tr>
+                <th class="col-module">Module</th>
+                <th class="col-coef">Coef</th>
+                <th class="col-mark">TD</th>
+                <th class="col-mark">Exam</th>
+                <th class="col-calc">Final Note</th>
+              </tr>
+            </thead>
+            <tbody id="modulesTbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel results">
+        <div class="results-left">
+          <div class="result-card">
+            <div class="result-label">Moyenne</div>
+            <div class="result-value" id="avgValue">—</div>
+            <div class="result-meta" id="avgMeta">Fill at least one module.</div>
+          </div>
+          <div class="result-card subtle">
+            <div class="result-label">Total coef counted</div>
+            <div class="result-value small" id="coefCounted">0</div>
+            <div class="result-meta">Only modules with a valid mark are counted.</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span class="muted">
+          Developed by Zekrifa Mohamed
+        </span>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
+
