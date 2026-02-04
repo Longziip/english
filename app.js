@@ -1,10 +1,6 @@
 const STORAGE_KEY = "moyenneCalc:v1";
 const DEFAULT_TD_WEIGHT = 50;
 const DEFAULT_SCALE = 20;
-
-/** @typedef {{ id: string, name: string, coef: number, short?: string }} ModuleDef */
-
-/** @type {ModuleDef[]} */
 const MODULES = [
   { id: "oral-tech-1", name: "Technique of Oral language 1", coef: 3 },
   { id: "written-tech-1", name: "Technique of Written language 1", coef: 3 },
@@ -48,7 +44,6 @@ function withinScale(n, scale) {
 }
 
 function getState() {
-  /** @type {any} */
   let raw = null;
   try {
     raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
@@ -56,7 +51,6 @@ function getState() {
     raw = null;
   }
 
-  /** @type {Record<string, { td?: string, exam?: string, final?: string }>} */
   const marks = raw?.marks && typeof raw.marks === "object" ? raw.marks : {};
 
   return { marks };
@@ -79,7 +73,6 @@ function computeModuleMark({ td, exam }, tdWeight, scale) {
   if (hasExam) return { mark: exam, mode: "exam-only" };
   if (hasTd) return { mark: td, mode: "td-only" };
 
-  // Invalid/incomplete.
   return { mark: null, mode: "missing" };
 }
 
@@ -178,7 +171,6 @@ function recomputeAndRender() {
     const result = computeModuleMark({ td, exam }, tdWeight, scale);
     const mark = result.mark;
 
-    // Display computed mark
     if (mark == null) {
       computedEl.textContent = "—";
       computedEl.classList.add("missing");
@@ -188,11 +180,9 @@ function recomputeAndRender() {
       computedEl.textContent = `${shown} / ${scale}`;
       computedEl.classList.remove("missing");
 
-      // "bad" if outside scale due to invalid inputs or scale mismatch
       computedEl.classList.toggle("bad", !withinScale(mark, scale));
     }
 
-    // For average
     if (withinScale(mark, scale)) {
       sum += mark * mod.coef;
       coefCounted += mod.coef;
